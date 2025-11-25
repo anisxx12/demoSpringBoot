@@ -30,4 +30,13 @@ studentRepository.save(student);
 // Assert that the repository now contains exactly one record
 assertThat(studentRepository.count()).isEqualTo(1);
 }
+@Order(2) // Ensures this test runs after shouldSaveStudent()
+void shouldFindAllStudents() {
+// Fetch all students from the repository
+List<Student> students = studentRepository.findAll();
+// Assert that there is exactly one student in the list
+assertThat(students).hasSize(1);
+// Assert that the student's name is "Charlie"
+assertThat(students.get(0).getName()).isEqualTo("Charlie");
+}
 }
